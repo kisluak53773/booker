@@ -1,1 +1,2 @@
-export { LoginPage } from './components';
+export { AuthPage } from './components';
+export * from './types';

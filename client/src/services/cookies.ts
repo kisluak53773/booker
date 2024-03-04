@@ -15,15 +15,12 @@ export const getRefreshToken = () => {
   return refreshToken || null;
 };
 
-export const saveAccessToCookies = (accessToken: string) => {
+export const saveTokens = (accessToken: string, refreshToken: string) => {
   Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
     domain: 'localhost',
     sameSite: 'strict',
     expires: 1,
   });
-};
-
-export const saveRefreshToCookies = (refreshToken: string) => {
   Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
     domain: 'localhost',
     sameSite: 'strict',

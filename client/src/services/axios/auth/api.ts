@@ -1,11 +1,7 @@
-import {
-  IAuthResponse,
-  IRegisterData,
-  ILoginData,
-  IRefreshResponse,
-} from './@types';
+import { type IAuthResponse, type IRefreshResponse } from './@types';
 import { axiosDefault, axiosRefresh } from '..';
-import { saveAccessToCookies, saveRefreshToCookies } from '@/services/cookies';
+import { saveTokens } from '@/services/cookies';
+import { type ILoginData, type IRegisterData } from '@/features/auth';
 
 export const authService = {
   async login(data: ILoginData) {
@@ -13,10 +9,8 @@ export const authService = {
       'auth/login/',
       data
     );
-    if (response.data.access && response.data.refresh) {
-      saveAccessToCookies(response.data.access);
-      saveRefreshToCookies(response.data.refresh);
-    }
+    if (response.data.access && response.data.refresh)
+      saveTokens(response.data.access, response.data.refresh);
     return response.data.user;
   },
 
@@ -25,17 +19,15 @@ export const authService = {
       'auth/register/',
       data
     );
-    if (response.data.access && response.data.refresh) {
-      saveAccessToCookies(response.data.access);
-      saveRefreshToCookies(response.data.refresh);
-    }
-
+    if (response.data.access && response.data.refresh)
+      saveTokens(response.data.access, response.data.refresh);
     return response.data.user;
   },
 
   async refresh() {
     const response = await axiosRefresh.post<IRefreshResponse>('auth/refresh/');
-    if (response.data.access) saveAccessToCookies(response.data.access);
+    if (response.data.access && response.data.refresh)
+      saveTokens(response.data.access, response.data.refresh);
     return response;
   },
 };
