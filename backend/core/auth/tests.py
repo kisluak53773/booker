@@ -29,7 +29,8 @@ class TestAuthenticationViewSet:
         data = {'email': user.email, 'password': '1234'}
         response = client.post(self.endpoint+'login/', data)
         assert response.status_code == status.HTTP_200_OK
-        data_refresh = {'refresh': response.data['refresh']}
-        response = client.post(self.endpoint+'refresh/', data_refresh)
+        headers = {'Authorization': f"Bearer {response.data['refresh']}"}
+        response = client.post(self.endpoint+'refresh/', headers=headers)
         assert response.status_code == status.HTTP_200_OK
         assert response.data['access']
+        assert response.data['refresh']

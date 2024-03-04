@@ -1,4 +1,3 @@
-from typing import Any, Dict
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from core.user.serializers import UserSerializer
 
