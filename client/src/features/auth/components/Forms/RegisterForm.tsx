@@ -30,7 +30,7 @@ export const RegisterForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {userError && <div>{userError}</div>}
+      {userError && <div className=" text-red-400">{userError}</div>}
       {REGISTER_FIELDS.map((fieldData) => (
         <Controller
           key={fieldData.id}
@@ -40,7 +40,7 @@ export const RegisterForm: FC = () => {
               ? {
                   ...fieldData.rules,
                   validate: (value) =>
-                    value === password || 'Passwords must match',
+                    value === password || 'Password must match',
                 }
               : fieldData.rules
           }
@@ -53,22 +53,24 @@ export const RegisterForm: FC = () => {
               | 'passwordRepeat'
           }
           render={({ field, fieldState: { error } }) => (
-            <div>
+            <div className="flex flex-col mt-[10px] mb-[10px]">
               <label htmlFor={fieldData.id}>{fieldData.title}</label>
               <input
                 id={fieldData.id}
                 type={fieldData.type}
                 {...field}
-                placeholder={fieldData.type}
+                placeholder={fieldData.placeholder}
+                className="w-[35vw] p-[5px] focus:outline-none border-[1px] border-gray-300 rounded-[5px]"
               />
-              {error && <div>{error.message}</div>}
+              {error && <div className=" text-red-400">{error.message}</div>}
             </div>
           )}
         />
       ))}
       <button
         type="submit"
-        disabled={!!isValid}>
+        className="w-[35vw] mt-[20px] text-center bg-primary rounded-[5px] p-[5px]"
+        disabled={!isValid}>
         Register
       </button>
     </form>

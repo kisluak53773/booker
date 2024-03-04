@@ -161,4 +161,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 AUTH_USER_MODEL = 'core_user.User'
 
-CORS_ALLOWED_ORIGINS = ['http://*']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']

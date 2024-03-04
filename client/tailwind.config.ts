@@ -7,6 +7,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: COLORS,
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+        ubuntu: ['var(--font-ubuntu)'],
+      },
     },
   },
   plugins: [],
