@@ -8,4 +8,3 @@ class ReviewViewSet(AbstractViewSet):
     queryset = Review.objects.all()
     http_method_names = ['get', 'post']
     serializer_class = ReviewSerializer
-    permission_classes = (AllowAny,)

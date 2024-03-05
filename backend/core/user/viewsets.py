@@ -7,7 +7,6 @@ from core.user.models import User
 class UserViewSet(AbstractViewSet):
     serializer_class = UserSerializer
     http_method_names = ('get', 'patch',)
-    permission_classes = (AllowAny,)
 
     def get_queryset(self):
         if self.request.user.is_superuser:

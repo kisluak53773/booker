@@ -9,7 +9,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 
 class BookViewSet(AbstractViewSet):
     http_method_names = ['get', 'post']
-    permission_classes = (AllowAny,)
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     parser_classes = (MultiPartParser, FormParser)

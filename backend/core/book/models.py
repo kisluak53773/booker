@@ -1,6 +1,9 @@
 from core.abstract.models import AbstractManager, AbstractModel
 from django.db import models
-from django.conf import settings
+
+
+def cover_directory_path(instance, filename):
+    return "book_cover_{0}/{1}".format(instance.public_id, filename)
 
 
 class BookManager(AbstractManager):
@@ -14,7 +17,7 @@ class Book(AbstractModel):
     publisher = models.ForeignKey(
         'core_publisher.Publisher', on_delete=models.CASCADE, related_name='Books')
     cover = models.ImageField(
-        upload_to=settings.MEDIA_ROOT, blank=True, null=True)
+        upload_to=cover_directory_path, blank=True, null=True)
     description = models.TextField(max_length=1000)
 
     objects = BookManager()
