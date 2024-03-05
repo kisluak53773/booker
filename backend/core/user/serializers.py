@@ -6,5 +6,5 @@ class UserSerializer(AbstractSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id', 'email', 'first_name', 'last_name']
         read_only_fields = ['is_active']

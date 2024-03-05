@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'core.user',
     'core.auth',
     'core.abstract',
+    'core.publisher',
+    'core.book',
+    'core.review',
 ]
 
 MIDDLEWARE = [
