@@ -36,8 +36,9 @@ axiosWithAuth.interceptors.response.use(
     const originalRequest = error.config;
     if (
       (error?.response?.status === 401 ||
-        errorCatch(error) === 'jwt expired' ||
-        errorCatch(error) === 'jwt must be provided') &&
+        errorCatch(error) === 'Given token not valid for any token type' ||
+        errorCatch(error) ===
+          'Authentication credentials were not provided.') &&
       error.config &&
       !error.config._isRetry
     ) {
@@ -46,7 +47,8 @@ axiosWithAuth.interceptors.response.use(
         await authService.refresh();
         return axiosWithAuth.request(originalRequest);
       } catch (error) {
-        if (errorCatch(error) === 'jwt expired') removeFromStorage();
+        if (errorCatch(error) === 'Given token not valid for any token type')
+          removeFromStorage();
       }
     }
   }
