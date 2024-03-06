@@ -8,7 +8,7 @@ class PublisherSerializer(AbstractSerializer):
 
     class Meta:
         model = Publisher
-        fields = ['id', 'created', 'updated', 'books']
+        fields = ['id', 'title', 'created', 'updated', 'books']
 
     def get_books(self, instance):
-        return instance.Books.all()
+        return instance.books.all()

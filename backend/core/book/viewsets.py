@@ -1,14 +1,13 @@
 from rest_framework.response import Response
 from core.abstract.viewsets import AbstractViewSet
 from core.book.serializers import BookSerializer
-from rest_framework.permissions import AllowAny
 from core.book.models import Book
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class BookViewSet(AbstractViewSet):
-    http_method_names = ['get', 'post']
+    http_method_names = ("post", "get", "put", "delete")
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     parser_classes = (MultiPartParser, FormParser)

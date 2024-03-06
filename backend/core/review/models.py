@@ -10,7 +10,9 @@ class Review(AbstractModel):
     title = models.CharField(max_length=100)
     body = models.TextField(max_length=1500)
     author = models.ForeignKey(
-        'core_user.User', on_delete=models.CASCADE, related_name='Reviews')
+        'core_user.User', on_delete=models.CASCADE, related_name='reviews')
+    book = models.ForeignKey(
+        'core_book.Book', on_delete=models.CASCADE, related_name='reviews')
 
     objects = ReviewManager()
 

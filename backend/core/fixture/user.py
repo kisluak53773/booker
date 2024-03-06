@@ -15,6 +15,13 @@ data_superuser = {
     "password": "test_password"
 }
 
+data_another_user = {
+    "email": "some@gmail.com",
+    "first_name": "another",
+    "last_name": "user",
+    "password": "another_user"
+}
+
 
 @pytest.fixture
 def user(db):
@@ -24,3 +31,8 @@ def user(db):
 @pytest.fixture
 def superuser(db):
     return User.objects.create_superuser(**data_superuser)
+
+
+@pytest.fixture
+def another_user(db):
+    return User.objects.create(**another_user)

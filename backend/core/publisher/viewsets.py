@@ -6,5 +6,5 @@ from rest_framework.permissions import AllowAny
 
 class PublisherViewSet(AbstractViewSet):
     serializer_class = PublisherSerializer
-    http_method_names = ['get', 'post']
+    http_method_names = ("post", "get", "put", "delete")
     queryset = Publisher.objects.all()

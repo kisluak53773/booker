@@ -31,9 +31,9 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    EMAIL_FIEL = 'email'
+    EMAIL_FIELD = 'email'
 
     objects = UserManager()
 
     def __str__(self):
-        return f'{self.username}'
+        return f'{self.email}'
