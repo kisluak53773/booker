@@ -5,5 +5,5 @@ from core.review.models import Review
 class ReviewSerializer(AbstractSerializer):
 
     class Meta:
-        models = Review
+        model = Review
         fields = '__all__'

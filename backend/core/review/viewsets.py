@@ -6,5 +6,5 @@ from rest_framework.permissions import AllowAny
 
 class ReviewViewSet(AbstractViewSet):
     queryset = Review.objects.all()
-    http_method_names = ['get', 'post']
+    http_method_names = ("post", "get", "put", "delete")
     serializer_class = ReviewSerializer

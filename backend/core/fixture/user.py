@@ -35,4 +35,4 @@ def superuser(db):
 
 @pytest.fixture
 def another_user(db):
-    return User.objects.create(**another_user)
+    return User.objects.create(**data_another_user)
