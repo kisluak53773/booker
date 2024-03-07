@@ -8,4 +8,4 @@ class ReviewViewSet(AbstractViewSet):
     queryset = Review.objects.all()
     http_method_names = ("post", "get", "put", "delete")
     serializer_class = ReviewSerializer
-    search_fields = ('title', 'body', 'author__id', 'book__title')
+    search_fields = ('=title', 'body', 'author__id', '=book__title')
