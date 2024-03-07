@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { UNAUTHORIZED_LINK_LIST } from '@/constants';
+import { UNAUTHORIZED_LINK_LIST } from './headerLinksConstant';
 
 export const Header: FC = () => {
   return (

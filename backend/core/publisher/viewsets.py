@@ -8,3 +8,4 @@ class PublisherViewSet(AbstractViewSet):
     serializer_class = PublisherSerializer
     http_method_names = ("post", "get", "put", "delete")
     queryset = Publisher.objects.all()
+    search_fields = ('title',)
