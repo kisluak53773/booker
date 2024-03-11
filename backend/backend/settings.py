@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'core.publisher',
     'core.book',
     'core.review',
+    'core.genre'
 ]
 
 MIDDLEWARE = [

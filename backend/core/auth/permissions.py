@@ -7,7 +7,7 @@ class UserPermissions(permissions.BasePermission):
         if request.user.is_anonymous:
             return request.method in permissions.SAFE_METHODS
 
-        if view.basename in ['book', 'publisher']:
+        if view.basename in ['book', 'publisher', 'genre']:
             if request.method in permissions.SAFE_METHODS:
                 return True
             return bool(request.user and request.user.is_superuser)
@@ -31,7 +31,7 @@ class UserPermissions(permissions.BasePermission):
 
             return bool(request.user and request.user.is_authenticated)
 
-        if view.basename in ['book', 'publisher']:
+        if view.basename in ['book', 'publisher', 'genre']:
             if request.method in permissions.SAFE_METHODS:
                 return True
             return bool(request.user and request.user.is_superuser)

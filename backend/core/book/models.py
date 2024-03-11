@@ -19,6 +19,8 @@ class Book(AbstractModel):
     cover = models.ImageField(
         upload_to=cover_directory_path, blank=True, null=True)
     description = models.TextField(max_length=1000)
+    genre = models.ManyToManyField(
+        'core_genre.Genre', related_name='genres')
 
     objects = BookManager()
 
