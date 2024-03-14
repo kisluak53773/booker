@@ -3,7 +3,7 @@ from django.db import models
 
 
 def cover_directory_path(instance, filename):
-    return "book_cover_{0}/{1}".format(instance.public_id, filename)
+    return "book_cover_{0}/{1}".format(instance.id, filename)
 
 
 class BookManager(AbstractManager):
