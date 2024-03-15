@@ -25,3 +25,15 @@ export interface IReview {
   author: number;
   book: number;
 }
+
+export interface IBookItemProps {
+  book: IBook;
+}
+
+export interface IReviewItemProps {
+  review: IReview;
+}
+
+export interface IGenreItemProps {
+  genre: IGenre;
+}

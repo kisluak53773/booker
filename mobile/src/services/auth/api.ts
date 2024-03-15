@@ -1,6 +1,6 @@
 import { type IAuthResponse, type IRefreshResponse } from './@types';
-import { saveTokens } from '@/services';
-import { axiosDefault, axiosRefresh } from '@/api';
+import { saveTokens, saveUserToSecureStore } from '@/services';
+import { axiosDefault, axiosRefresh } from '@/services';
 import { type ILoginData, type IRegisterData } from '@/features/auth';
 
 export const authService = {
@@ -9,8 +9,10 @@ export const authService = {
       'auth/login/',
       data
     );
-    if (response.data.access && response.data.refresh)
+    if (response.data.access && response.data.refresh && response.data.user) {
       await saveTokens(response.data.access, response.data.refresh);
+      await saveUserToSecureStore(response.data.user);
+    }
     return response.data.user;
   },
 
@@ -19,8 +21,10 @@ export const authService = {
       'auth/register/',
       data
     );
-    if (response.data.access && response.data.refresh)
+    if (response.data.access && response.data.refresh && response.data.user) {
       await saveTokens(response.data.access, response.data.refresh);
+      await saveUserToSecureStore(response.data.user);
+    }
     return response.data.user;
   },
 

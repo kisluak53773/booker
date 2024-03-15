@@ -160,8 +160,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'core_user.User'
 CORS_ALLOW_ALL_ORIGINS = True

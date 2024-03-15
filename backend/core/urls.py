@@ -17,4 +17,6 @@ router.register(r'publisher', PublisherViewSet, basename='publisher')
 router.register(r'review', ReviewViewSet, basename='review')
 router.register(r'genre', GenreViewSet, basename='genre')
 
-urlpatterns = [*router.urls]
+urlpatterns = [
+    *router.urls,
+]

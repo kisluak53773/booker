@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { BookScreen } from '@/features/books';
+import { BooksScreen } from '@/features/books';
 
-const Main: FC = () => <BookScreen />;
+const Main: FC = () => <BooksScreen />;
 
 export default Main;

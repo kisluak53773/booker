@@ -1,1 +1,1 @@
-export * from './BookScreen';
+export * from './BooksScreen';

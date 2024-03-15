@@ -4,8 +4,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { IUserInitialState } from './@types';
 import { RootState } from '@/store';
 import { IRegisterData, ILoginData } from '@/features/auth';
-import { authService } from '@/api/auth';
-import { errorCatch } from '@/api';
+import { authService } from '@/services/auth';
+import { errorCatch } from '@/services';
 
 const initialState: IUserInitialState = {
   user: null,
@@ -30,10 +30,8 @@ export const loginUser = createAsyncThunk(
   async (data: ILoginData) => {
     try {
       const response = await authService.login(data);
-      console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       throw new Error(errorCatch(error));
     }
   }
