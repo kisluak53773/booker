@@ -19,7 +19,7 @@ export const getRefreshToken = async () => {
 
 export const saveTokens = async (accessToken: string, refreshToken: string) => {
   await SecureStore.setItemAsync(EnumStore.ACCESS_TOKEN, accessToken);
-  await SecureStore.setItem(EnumStore.REFRESH_TOKEN, refreshToken);
+  await SecureStore.setItemAsync(EnumStore.REFRESH_TOKEN, refreshToken);
 };
 
 export const saveUserToSecureStore = async (user: IUser) => {

@@ -6,6 +6,8 @@ import { RootState } from '@/store';
 import { IRegisterData, ILoginData } from '@/features/auth';
 import { authService } from '@/services/auth';
 import { errorCatch } from '@/services';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from './@types';
 
 const initialState: IUserInitialState = {
   user: null,
@@ -44,6 +46,9 @@ export const userSlice = createSlice({
     removeUser(state) {
       state.user = initialState.user;
     },
+    setUser(state, action: PayloadAction<IUser>) {
+      state.user = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
@@ -77,4 +82,4 @@ export const getIsUserLoading = (state: RootState) => state.user.isLodaing;
 export const getUserError = (state: RootState) => state.user.error;
 export const getUser = (state: RootState) => state.user.user;
 
-export const { removeUser } = userSlice.actions;
+export const { removeUser, setUser } = userSlice.actions;

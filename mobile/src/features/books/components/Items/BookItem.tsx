@@ -9,10 +9,12 @@ import {
   Pressable,
 } from 'react-native';
 import { GenreItem } from './GenreItem';
-import { ReviewItem } from './ReviewItem';
 import { bookItemStyles } from '../../styles';
+import { useRouter } from 'expo-router';
 
 export const BookItem: FC<IBookItemProps> = ({ book }) => {
+  const router = useRouter();
+
   return (
     <View style={bookItemStyles.containder}>
       <Image
@@ -39,7 +41,9 @@ export const BookItem: FC<IBookItemProps> = ({ book }) => {
       />
       <Text style={bookItemStyles.bookDescription}>Description</Text>
       <Text>{book.description}</Text>
-      <Pressable style={bookItemStyles.buttonContainer}>
+      <Pressable
+        onPress={() => router.push(`/${book.id}?book=${book.title}`)}
+        style={bookItemStyles.buttonContainer}>
         <Text style={bookItemStyles.buttonText}>See the reviews</Text>
       </Pressable>
     </View>

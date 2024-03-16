@@ -1,2 +1,2 @@
-export { BooksScreen } from './components';
+export { BooksScreen, SpecificBookScreen } from './components';
 export * from './types';

@@ -33,6 +33,12 @@ const TabsLayout: FC = () => {
           ),
         }}
       />
+      <Tabs.Screen
+        name="[id]"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 };

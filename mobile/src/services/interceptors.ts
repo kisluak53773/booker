@@ -17,7 +17,7 @@ export const axiosRefresh = axios.create(options);
 axiosWithAuth.interceptors.request.use(async (config) => {
   const accessToken = await getAccessToken();
   if (config?.headers && accessToken) {
-    config.headers.Authorization = accessToken;
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
   return config;
 });
@@ -25,7 +25,7 @@ axiosWithAuth.interceptors.request.use(async (config) => {
 axiosRefresh.interceptors.request.use(async (config) => {
   const refreshToken = await getRefreshToken();
   if (config.headers && refreshToken) {
-    config.headers.Authorization = refreshToken;
+    config.headers.Authorization = `Bearer ${refreshToken}`;
   }
   return config;
 });

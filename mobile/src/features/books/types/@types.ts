@@ -1,3 +1,5 @@
+import { SetStateAction, Dispatch } from 'react';
+
 export interface IBook {
   id: number;
   title: string;
@@ -36,4 +38,10 @@ export interface IReviewItemProps {
 
 export interface IGenreItemProps {
   genre: IGenre;
+}
+
+export interface IGenreCarouselProps extends IGenreItemProps {
+  selectedGenre: number | null;
+  setSelectedGenre: Dispatch<SetStateAction<number | null>>;
+  setBooks: Dispatch<SetStateAction<IBook[] | null>>;
 }

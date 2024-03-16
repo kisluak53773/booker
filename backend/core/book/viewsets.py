@@ -4,6 +4,7 @@ from core.book.serializers import BookSerializer
 from core.book.models import Book
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
+from core.book.filters import GenreFilter
 
 
 class BookViewSet(AbstractViewSet):
@@ -12,6 +13,14 @@ class BookViewSet(AbstractViewSet):
     queryset = Book.objects.all()
     parser_classes = (MultiPartParser, FormParser)
     search_fields = ('title', 'description', 'author__id', '=publisher__title')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        genre_ids = self.request.query_params.getlist('genre_ids')
+        if genre_ids:
+            queryset = queryset.filter(genre__id__in=genre_ids)
+            return queryset
+        return queryset
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

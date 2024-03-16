@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, SafeAreaView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { getUser } from '@/store/slices/user';
 import { profileStyles } from '../styles/profile';
@@ -17,7 +17,7 @@ export const ProfileScreen: FC = () => {
   };
 
   return (
-    <View style={profileStyles.container}>
+    <SafeAreaView style={profileStyles.container}>
       <Text
         style={
           profileStyles.name
@@ -28,6 +28,6 @@ export const ProfileScreen: FC = () => {
         style={profileStyles.buttonContainer}>
         <Text style={profileStyles.buttonText}>Sign out</Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
