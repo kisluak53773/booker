@@ -14,6 +14,13 @@ export const bookService = {
     const book = bookCoverPathFormatter(response.data);
     return book;
   },
+  async getByTitle(title: string) {
+    const response = await axiosDefault.get<IBooksResponse>(
+      `book/?search=${title}`
+    );
+    const books = booksCoverPathFormatter(response.data.results);
+    return books;
+  },
   async getByGenre(genreId: number) {
     const response = await axiosDefault.get<IBooksResponse>(
       `book/?genre_ids=${genreId}`

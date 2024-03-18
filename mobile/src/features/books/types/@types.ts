@@ -45,3 +45,16 @@ export interface IGenreCarouselProps extends IGenreItemProps {
   setSelectedGenre: Dispatch<SetStateAction<number | null>>;
   setBooks: Dispatch<SetStateAction<IBook[] | null>>;
 }
+
+export interface ISearchProps {
+  setSearch: Dispatch<SetStateAction<string>>;
+  search: string;
+}
+
+export interface IReviewInputProps {
+  handlePress: () => Promise<void>;
+  commentTitle: string;
+  setCommentTitle: Dispatch<SetStateAction<string>>;
+  comment: string;
+  setComment: Dispatch<SetStateAction<string>>;
+}

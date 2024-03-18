@@ -87,6 +87,25 @@ export const specificBookStyles = StyleSheet.create({
     width: '100%',
     height: 550,
   },
+  bookTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginBottom: 10,
+  },
+  tagTitle: {
+    fontWeight: 'bold',
+    flexDirection: 'row',
+  },
+  tagItem: {
+    fontWeight: '400',
+  },
+  bookDescription: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 10,
+  },
 });
 
 export const reviewItemStyle = StyleSheet.create({
@@ -103,4 +122,60 @@ export const reviewItemStyle = StyleSheet.create({
     fontSize: 20,
   },
   text: {},
+});
+
+export const searchStyles = StyleSheet.create({
+  searchContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 15,
+    borderBlockColor: 'gray',
+    borderBottomWidth: 0.2,
+    borderTopWidth: 0.2,
+  },
+  searchInput: {
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: 'gray',
+    padding: 5,
+    paddingLeft: 20,
+  },
+});
+
+export const reviewInputStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 20,
+  },
+  authoriztionRequiredContainer: {
+    flex: 1,
+    padding: 20,
+  },
+  authoriztionRequiredText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  reviewInput: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  reviewBodyInout: {
+    height: 200,
+  },
+  buttonContainer: {
+    backgroundColor: 'black',
+    padding: 15,
+    borderRadius: 15,
+    width: '80%',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white',
+  },
 });

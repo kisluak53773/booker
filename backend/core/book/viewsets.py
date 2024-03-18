@@ -12,7 +12,7 @@ class BookViewSet(AbstractViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     parser_classes = (MultiPartParser, FormParser)
-    search_fields = ('title', 'description', 'author__id', '=publisher__title')
+    search_fields = ('title',)
 
     def get_queryset(self):
         queryset = super().get_queryset()

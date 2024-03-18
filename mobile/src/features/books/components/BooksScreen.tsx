@@ -1,5 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import { SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
+import {
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+  ScrollView,
+} from 'react-native';
 import { type IBook } from '../types';
 import { bookService } from '@/services/book';
 import { BookItem } from './Items';
@@ -17,17 +22,24 @@ import { useAppDispatch } from '@/store';
 import { type IGenre } from '../types';
 import { genreService } from '@/services/genre';
 import { DEFAULT_GENRE } from '../constants';
+import { useDebounce } from '@/hooks';
+import { Search } from './Items';
 
 export const BooksScreen: FC = () => {
   const [books, setBooks] = useState<IBook[] | null>(null);
   const [genres, setGenres] = useState<IGenre[] | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
+  const [search, setSearch] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const debouncedSearch = useDebounce(search);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
-      const books = await bookService.getAll();
+      setLoading(true);
+      const books = await bookService.getByTitle(debouncedSearch as string);
       setBooks(books);
+      setLoading(false);
       const genres = await genreService.getAll();
       setGenres([DEFAULT_GENRE, ...genres]);
       setSelectedGenre(DEFAULT_GENRE.id);
@@ -41,17 +53,21 @@ export const BooksScreen: FC = () => {
         removeFromStorage();
       }
     })();
-  }, []);
+  }, [debouncedSearch]);
 
   return (
     <SafeAreaView style={bookScreenStyles.container}>
-      {!books && !genres && !selectedGenre ? (
+      {!books && !genres && !selectedGenre && loading ? (
         <ActivityIndicator
           size={'large'}
           color={'black'}
         />
       ) : (
-        <>
+        <ScrollView>
+          <Search
+            search={search}
+            setSearch={setSearch}
+          />
           <FlatList
             data={genres}
             renderItem={({ item }) => (
@@ -65,12 +81,13 @@ export const BooksScreen: FC = () => {
             keyExtractor={(item) => String(item.id)}
             horizontal={true}
           />
-          <FlatList
-            data={books}
-            renderItem={({ item }) => <BookItem book={item} />}
-            keyExtractor={(item) => String(item.id)}
-          />
-        </>
+          {books?.map((book) => (
+            <BookItem
+              key={book.id}
+              book={book}
+            />
+          ))}
+        </ScrollView>
       )}
     </SafeAreaView>
   );
